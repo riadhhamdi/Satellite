@@ -1,0 +1,8 @@
+- hosts: all 
+  gather_facts: no 
+  tasks:
+  - name: show remediation success
+    debug:
+      msg: "remediation applied successfully ! "
+  roles: 
+  - role: aide

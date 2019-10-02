@@ -1,0 +1,11 @@
+- hosts: all 
+  vars_files: 
+    - satellite_credentials.yml
+  ignore_errors: yes 
+  gather_facts: no 
+  roles:
+  - role: ansible-role-scap-client 
+  tasks: 
+  - name: Show success message 
+    debug: 
+      msg: "Foreman Openscap role has been deployed"

@@ -1,0 +1,45 @@
+## Must be placed in /usr/local/lib/clone_repo.yml
+- hosts: localhost
+  gather_facts: no
+  vars:
+    src_satellite: https://pars220i0002.bnppi.priv
+    dest_satellite: https://10.173.68.6
+    organization: 1
+    products_endpoint: /katello/api/products
+    repositories_endpoint: /katello/api/repositories
+    satellite_login: admin
+    satellite_password: redhat
+
+  tasks:
+  ###Getting all products on src satellite
+  - name: Parsing products on src Satellite ( {{ src_satellite}} )
+    uri:
+      url: "https://{{src_satellite}}{{repositories_endpoint}}?per_page=1000"
+      #method: GET
+      validate_certs: false
+      force_basic_auth: true
+      user: "{{satellite_login}}"
+      password: "{{satellite_password}}"
+      headers:
+        Content-Type: 'application/json'
+    register: all_products
+  - name: Show all products available on SRC Satellite
+    debug:
+      var: all_products.json.results
+  - name: Show all products available on SRC Satellite
+    debug:
+      var: all_products.json.results[0].product.name
+  - name: create product locally by adding ISS tag
+    shell: "hammer product create --name '{{item.product.name}} ISS' --ssl-client-key-id 1 --ssl-ca-cert-id 1 --ssl-client-cert-id 1  --organization-id 1 2>/dev/null"
+    with_items: "{{all_products.json.results}}"
+    ignore_errors: yes
+  - name: create YUM repositories inside products
+    shell: "hammer repository create --organization-id 1 --product '{{item.product.name}} ISS' --content-type yum --download-policy immediate --verify-ssl-on-sync false --url {{item.full_path}} --name '{{item.name}}'"
+    ignore_errors: yes
+    when: item.content_type == "yum"
+    with_items: "{{all_products.json.results}}"
+  - name: create FILE repositories inside products
+    shell: "hammer repository create --organization-id 1 --product '{{item.product.name}} ISS' --content-type file  --verify-ssl-on-sync false --url {{item.full_path}} --name '{{item.name}}'"
+    ignore_errors: yes
+    when: item.content_type == "file"
+    with_items: "{{all_products.json.results}}"

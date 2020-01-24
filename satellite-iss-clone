@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo  "This Tool will synchronize the products and the repositories on"
+echo  "Both installed Satellites. The source Satellite is the one connected"
+echo  "connected to the internet. The destination Satellite is the local one"
+echo  "Please enter your source Satellite IP/HOSTNAME"
+echo
+echo
+echo
+SOURCE_SAT=pars220i0002
+printf 'Source Sat IP/HOSTNAME [pars220i0002] : '
+read -r SOURCE_SAT
+
+test -z $SOURCE_SAT && export SOURCE_SAT=pars220i0002
+
+
+echo
+
+printf 'Satellite Username [admin]:'
+read -r SAT_USER
+
+test -z $SAT_USER && export SAT_USER=admin
+
+echo
+
+printf 'Satellite Password : '
+read -s SAT_PASS
+
+
+
+
+
+ansible-playbook /usr/local/lib/clone_repo.yml -i /usr/local/lib/clone_repo_inventory -e "satellite_login=$SAT_USER satellite_password=$SAT_PASS src_satellite=$SOURCE_SAT" 1> /dev/null
+
+
+if [ $? -eq 0 ]
+
+exit 0
+
+fi

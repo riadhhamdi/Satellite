@@ -10,19 +10,7 @@ This documentation explains how to install Red Hat Satellite and manage debian c
 
 
 
----
-header-includes:
-    - \usepackage[most]{tcolorbox}
-    - \definecolor{light-yellow}{rgb}{1, 0.95, 0.7}
-    - \newtcolorbox{myquote}{colback=light-yellow,grow to right by=-10mm,grow to left by=-10mm, boxrule=0pt,boxsep=0pt,breakable}
-    - \newcommand{\todo}[1]{\begin{myquote} \textbf{TODO:} \emph{#1} \end{myquote}}
----
 
-blah blah
-
-\todo{something}
-
-blah
 
 
 
@@ -36,9 +24,11 @@ It works with almost all markdown flavours (the below blank line matters).
 
 ---
 
+```
+:information_source: Note:
 
-| :information_source:    **Note: Enabling foreman and katello debian plugin is not supported by Red Hat**, check the following solution: https://access.redhat.com/solutions/1519433 |
-
+         Enabling foreman and katello debian plugin is not supported by Red Hat**, check the following solution: https://access.redhat.com/solutions/1519433 |
+```
 
 
 ## Installation 

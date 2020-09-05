@@ -21,14 +21,13 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 == Registering server to Red Hat CDN and enabling repositories for Satellite 
 
 ```
-subscription-manager register
-subscription-manager list --all --available --matches 'Red Hat Satellite Infrastructure Subscription'
-subscription-manager attach --pool=<pool_id>
-subscription-manager repos --disable "*"
-subscription-manager repos --enable=rhel-7-server-rpms \
---enable=rhel-server-7-satellite-6-beta-rpms \
---enable=rhel-7-server-satellite-maintenance-6-beta-rpms \
---enable=rhel-server-rhscl-7-rpms \
+[root@satellite]# subscription-manager register
+[root@satellite]# subscription-manager list --all --available --matches 'Red Hat Satellite Infrastructure Subscription'
+[root@satellite]# subscription-manager attach --pool=<pool_id>
+[root@satellite]# subscription-manager repos --disable "*"
+[root@satellite]# subscription-manager repos --enable=rhel-7-server-rpms \
+                                             --enable=rhel-server-7-satellite-6-beta-rpms \
+                                             --enable=rhel-7-server-satellite-maintenance-6-beta-rpms \                                                                  --enable=rhel-server-rhscl-7-rpms \
 --enable=rhel-7-server-ansible-2.9-rpms
 
 ```

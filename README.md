@@ -114,6 +114,23 @@ if no operating system of type Debian is there create one
 Here is an example to add a new Debian host to Satellite 
 
 ![Alt Text](gifs/add_deb_host.gif)
+
 [Show as video](https://www.youtube.com/watch?v=gZzLsywnBlM&feature=youtu.be "Riadh's Videos")
+
+## Running Ansible jobs on Debian/Ubuntu hosts 
+
+After a node was successfully added to Red Hat Satellite you can run **Ansible** roles on it or simply do remote execution.
+
+To run roles on a given node: 
+
+- Add the role to the host by going to **Hosts** > **All hosts**
+- Choose the host, click on the link to the host and then **edit**
+- Goto Ansible Roles tab and swipe the chosen Role to the right 
+- Click then on the button next to **Schedule remote job** and choose **Run Ansible Roles**
+
+
+
+
+[Show as video](https://youtu.be/n3NqjSh84P8 "Riadh's Videos")
 
 

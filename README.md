@@ -65,6 +65,13 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 ## Synchronizing APT content in Red Hat Satellite 
 
+- Go to **content** > **products** and create a new product 
+- In the new created prodcut add a new repository , choose **apt** as the repository type 
+- Add the the repository URL of debian content in the upstream_url field (exemple: http://ftp.debian.org/debian) and choose the release in the release(s) field (for example **stable**) 
+- Save the repository configuration 
+- On the top right of the page goto **chose action** > **sync_now**
+
+
 
 ![Alt Text](gifs/sync_deb.gif)
 

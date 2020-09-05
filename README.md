@@ -80,3 +80,17 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 
 ## Adding  APT content to content View
+
+You can add a synchronized deb content to a content view in RedHat Satellite. 
+
+**Note** At this moment you cannot apply filters on APT repositories in content views 
+
+To add a content view with APT content: 
+
+- Goto **Content** > **content views**
+- Create a new content view
+- 
+
+
+https://github.com/theforeman/foreman_scap_client
+

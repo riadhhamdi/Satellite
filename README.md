@@ -9,25 +9,10 @@ This documentation explains how to install Red Hat Satellite and manage debian c
 - Red Hat Satellite subscription. 
 
 
-
-
-
-
-
-**_NOTE:_**  The note content.
-
-
----
-**NOTE**
-
-It works with almost all markdown flavours (the below blank line matters).
-
----
-
 :information_source: 
 ```
- ***Note***: Enabling foreman and katello debian plugin is not supported by Red Hat**, 
- check the following solution: https://access.redhat.com/solutions/1519433 |
+Note: Enabling foreman and katello debian plugin is not supported by Red Hat**, 
+check the following solution: https://access.redhat.com/solutions/1519433 |
 ```
 
 

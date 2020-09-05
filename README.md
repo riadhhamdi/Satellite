@@ -60,7 +60,13 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 4. Run Red Hat Satellite first configuration and enable Debian plugins 
 
 ```
-[root@satellite]# satellite-installer --scenario satellite --foreman-initial-admin-username admin --foreman-initial-admin-password redhat --foreman-initial-location Paris --foreman-initial-organization RedHat  --foreman-proxy-content-enable-deb true --katello-enable-deb true
+[root@satellite]# satellite-installer --scenario satellite \
+                                      --foreman-initial-admin-username admin \
+                                      --foreman-initial-admin-password redhat \
+                                      --foreman-initial-location Paris \
+                                      --foreman-initial-organization RedHat  \
+                                      --foreman-proxy-content-enable-deb true \
+                                      --katello-enable-deb true
 ```
 
 ## Synchronizing APT content in Red Hat Satellite 

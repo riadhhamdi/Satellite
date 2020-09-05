@@ -130,6 +130,7 @@ To run roles on a given node:
 
 
 
+![Alt Text](gifs/run_ansible.gif)
 
 [Show as video](https://youtu.be/n3NqjSh84P8 "Riadh's Videos")
 

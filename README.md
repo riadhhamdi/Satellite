@@ -9,6 +9,8 @@ This documentation explains how to install Red Hat Satellite and manage debian c
 - Red Hat Satellite subscription. 
 
 
+<img src="./markups/info-markup.svg">
+
 
 [!WARNING]
 This is a warning

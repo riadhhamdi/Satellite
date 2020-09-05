@@ -94,3 +94,5 @@ To add a content view with APT content:
 
 https://github.com/theforeman/foreman_scap_client
 
+
+## Adding new Debian / Ubuntu host to Red Hat Satellite 

@@ -77,3 +77,6 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 
 [Show as video](https://youtu.be/wSt3ezm3QCs "Riadh's Videos")
+
+
+## Adding  APT content to content View

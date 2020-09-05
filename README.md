@@ -24,7 +24,8 @@ It works with almost all markdown flavours (the below blank line matters).
 
 ---
 
-:information_source: ```
+:information_source: 
+```
  Note: Enabling foreman and katello debian plugin is not supported by Red Hat**, 
  check the following solution: https://access.redhat.com/solutions/1519433 |
 ```

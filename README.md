@@ -66,4 +66,4 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 ## Synchronizing APT content in Red Hat Satellite 
 
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](gifs/sync_deb.gif)

@@ -65,6 +65,50 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 ## Synchronizing APT content in Red Hat Satellite 
 
+- Go to **content** > **products** and create a new product 
+- In the new created prodcut add a new repository , choose **apt** as the repository type 
+- Add the the repository URL of debian content in the upstream_url field (exemple: http://ftp.debian.org/debian) and choose the release in the release(s) field (for example **stable**) 
+- Save the repository configuration 
+- On the top right of the page goto **chose action** > **sync_now**
 
-[![Syncing APT Content in Satellite](https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP)](https://drive.google.com/file/d/1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP/preview "Syncing APT Content in Satellite")
+
+
+![Alt Text](gifs/sync_deb.gif)
+
+
+[Show as video](https://youtu.be/wSt3ezm3QCs "Riadh's Videos")
+
+
+## Adding  APT content to content View
+
+You can add a synchronized deb content to a content view in RedHat Satellite. 
+
+**Note** At this moment you cannot apply filters on APT repositories in content views 
+
+To add a content view with APT content: 
+
+- Goto **Content** > **content views**
+- Create a new content view
+- 
+
+
+https://github.com/theforeman/foreman_scap_client
+
+
+## Adding new Debian / Ubuntu host to Red Hat Satellite 
+
+The normal procedure to add a new host to Red Hat Satellite goes through subscription-manager. Unfortunately this binary is not available on Debian/Ubuntu hosts is only packaged as an rpm package. 
+
+To add a new host as a foreman host you can go through the interface of your Red Hat Satellite: 
+
+- Goto **Hosts** > **Create host**
+- Add the host information (name, network[ip_address,domain], operating system) 
+- After the node is created click on cancel build button so the node can appear as fully installed 
+
+:information_source: 
+```
+Note: Make sure that an Operating System of type Debian/Ubuntu is created first. This can be done by going to hosts > operating systems. if no operating system of type Debian is there create one
+```
+Here is an example to add a new Debian host to Satellite 
+
 

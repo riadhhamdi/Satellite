@@ -27,8 +27,9 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 [root@satellite]# subscription-manager repos --disable "*"
 [root@satellite]# subscription-manager repos --enable=rhel-7-server-rpms \
                                              --enable=rhel-server-7-satellite-6-beta-rpms \
-                                             --enable=rhel-7-server-satellite-maintenance-6-beta-rpms \                                                                  --enable=rhel-server-rhscl-7-rpms \
---enable=rhel-7-server-ansible-2.9-rpms
+                                             --enable=rhel-7-server-satellite-maintenance-6-beta-rpms \  
+                                             --enable=rhel-server-rhscl-7-rpms \
+                                             --enable=rhel-7-server-ansible-2.9-rpms
 
 ```
 

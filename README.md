@@ -18,7 +18,7 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 ## Installation 
 
-== Registering server to Red Hat CDN and enabling repositories for Satellite 
+1. Registering server to Red Hat CDN and enabling repositories for Satellite 
 
 ```
 [root@satellite]# subscription-manager register
@@ -36,21 +36,35 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 
 
-== geting additional content for debian 
+2. Installing additional content for debian content management 
 
-yum install  https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/pulp-deb-plugins-1.10.1-1.el7.noarch.rpm https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/python-pulp-deb-common-1.10.1-1.el7.noarch.rpm  https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/python2-debpkgr-1.1.0-1.el7.noarch.rpm
+***Note*** This content is not manged into Red Hat repositories and will be pulled from upstream repositories 
 
-NOTE: if packages are not found in the given URIs you can find them in the packages directory 
+```
+[root@satellite]# yum install  https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/pulp-deb-plugins-1.10.1-1.el7.noarch.rpm  \
+                               https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/python-pulp-deb-common-1.10.1-1.el7.noarch.rpm \  
+                               https://repos.fedorapeople.org/pulp/pulp/stable/latest/7Server/x86_64/python2-debpkgr-1.1.0-1.el7.noarch.rpm 
+```
 
-
-==Installing Red Hat Satellite with deb plugins 
-
-
-
-satellite-installer --scenario satellite --foreman-initial-admin-username admin --foreman-initial-admin-password redhat --foreman-initial-location Paris --foreman-initial-organization RedHat  --foreman-proxy-content-enable-deb true --katello-enable-deb true
-
+*NOTE*: if packages are not found in the given URIs you can find them in the packages directory in this git repository 
 
 
-== Troubleshooting 
+3. installing Red Hat Satellite packge 
+
+```
+[root@satellite]# yum update -y && yum install satellite
+```
+
+
+
+4. Run Red Hat Satellite first configuration and enable Debian plugins 
+
+```
+[root@satellite]# satellite-installer --scenario satellite --foreman-initial-admin-username admin --foreman-initial-admin-password redhat --foreman-initial-location Paris --foreman-initial-organization RedHat  --foreman-proxy-content-enable-deb true --katello-enable-deb true
+```
+
+## Synchronizing APT content in Red Hat Satellite 
+
+
 
 

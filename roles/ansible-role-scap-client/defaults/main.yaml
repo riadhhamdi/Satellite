@@ -1,8 +1,0 @@
-satellite_server: 'spoutnik.local.amue.fr'
-satellite_username: admin
-satellite_password: 'cestcool'
-capsule_port: '9090'
-policy_name: 'changeme'
-crontab_hour: 2
-crontab_minute: 0
-crontab_weekdays: 0

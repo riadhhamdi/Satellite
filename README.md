@@ -66,5 +66,4 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 ## Synchronizing APT content in Red Hat Satellite 
 
 
-[comment]: <> [![Syncing APT Content in Satellite](https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP)](https://drive.google.com/file/d/1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP/preview "Syncing APT Content in Satellite")
-
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)

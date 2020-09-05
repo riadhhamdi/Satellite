@@ -107,8 +107,13 @@ To add a new host as a foreman host you can go through the interface of your Red
 
 :information_source: 
 ```
-Note: Make sure that an Operating System of type Debian/Ubuntu is created first. This can be done by going to hosts > operating systems. if no operating system of type Debian is there create one
+Note: Make sure that an Operating System of type Debian/Ubuntu is created first.
+This can be done by going to hosts > operating systems. 
+if no operating system of type Debian is there create one
 ```
 Here is an example to add a new Debian host to Satellite 
+
+![Alt Text](gifs/add_deb_host.gif)
+[Show as video](https://www.youtube.com/watch?v=gZzLsywnBlM&feature=youtu.be "Riadh's Videos")
 
 

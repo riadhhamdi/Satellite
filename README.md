@@ -75,11 +75,10 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 
 ![Alt Text](gifs/sync_deb.gif)
 
-
 [Show as video](https://youtu.be/wSt3ezm3QCs "Riadh's Videos")
 
 
-## Adding  APT content to content View
+## Adding  APT content to content View in Red Hat Satellite 
 
 You can add a synchronized deb content to a content view in RedHat Satellite. 
 
@@ -89,7 +88,12 @@ To add a content view with APT content:
 
 - Goto **Content** > **content views**
 - Create a new content view
-- 
+- Goto Apt repositories and add your apt repository 
+- Publish the content view 
+
+![Alt Text](gifs/add_deb_cv.gif)
+
+[Show as video](https://youtu.be/8rE1vkyM3QU "Riadh's Videos")
 
 
 https://github.com/theforeman/foreman_scap_client

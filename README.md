@@ -69,4 +69,4 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 ![Alt Text](gifs/sync_deb.gif)
 
 
-[Show as video](https://drive.google.com/file/d/1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP/preview "Riadh's Videos")
+[Show as video](https://youtu.be/wSt3ezm3QCs "Riadh's Videos")

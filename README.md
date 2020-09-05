@@ -69,4 +69,4 @@ check the following solution: https://access.redhat.com/solutions/1519433 |
 ![Alt Text](gifs/sync_deb.gif)
 
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+[Show as video](https://drive.google.com/file/d/1bv1wmh7mUTs6SizTTvvCT65YpoeCesIP/preview "Riadh's Videos")

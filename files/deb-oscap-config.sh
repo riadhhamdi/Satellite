@@ -34,8 +34,7 @@ cat > openscap_client_config.yaml.j2 << EOF1
   {% if tailoring_file.json.total > 0 %}
   :tailoring_path: '/var/lib/openscap/tailoring/{{tailoring_file.json.digest}}.xml'
   :tailoring_download_path: '/compliance/policies/{{policy.id}}/tailoring/{{tailoring_file.json.digest}}'
-
-
+  {% endif %}
 EOF1
 
 cat > scap_install.yml << EOF

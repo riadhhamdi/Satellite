@@ -138,6 +138,7 @@ read  sat_user
 echo -n 'Provide a valid Satellite password : '
 read  sat_pass
 
+echo 
 
 echo "satellite_username: $sat_user" >> vars.yml 
 echo "satellite_password: $sat_pass" >> vars.yml

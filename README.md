@@ -201,6 +201,13 @@ To generate certificates to the host use the following procedure
 ```
 
 
+On the client Side get the root CA for Katello 
+
+```
+
+[root@debian-demo]# wget http://<satellite_fqdn>/pub/katello-server-ca.crt -O /etc/foreman_scap_client/certs/ca.crt
+```
+
 ##### 3. Running the foreman Scap client and getting the report 
 
 

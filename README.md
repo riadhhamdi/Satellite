@@ -147,7 +147,7 @@ To run roles on a given node:
 ## Scanning Debian Hosts with foreman_scap (OpenScap) And uploading reports to Satellite 
 
 
-**1. Installing Foreman Scap client **
+##### 1. Installing Foreman Scap client 
 
 
  A first step to let the Debian/ubuntu server upload scap reports to Red Hat satellite is to install the **foreman_scap_client** ruby gem
@@ -171,7 +171,7 @@ The script will prompt for the following information:
 For more explanation about this : [Check the video](https://youtu.be/UfvDp8o28As "Riadh's Videos")
 
 
-**2. Getting the host certificates to ensure **
+##### 2. Getting the host certificates to ensure 
 
 The Certificates are an essential part to authenticate to Foreman-Proxy. As part of it's job foreman_scap_client needs to upload scap reports so this means that it should be authenticated. 
 
@@ -201,7 +201,7 @@ To generate certificates to the host use the following procedure
 ```
 
 
-**2. Running the foreman Scap client and getting the report **
+##### 3. Running the foreman Scap client and getting the report 
 
 
 On the client system run the following command 

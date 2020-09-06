@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-apt install -y  ansible  git gem 
+apt install -y  ansible  git gem rubygems build-essential
 gem install foreman_scap_client
 
 
@@ -44,6 +44,10 @@ cat > scap_install.yml << EOF
   vars_files:
     - ./vars.yml 
   tasks: 
+    - name: Create client directory 
+      file: 
+        path: /etc/foreman_scap_client
+        state: directory 
     
     - name: Get Policy parameters
       uri:

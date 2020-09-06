@@ -42,7 +42,7 @@ cat > scap_install.yml << EOF
 
 - hosts: localhost 
   vars_files:
-    - vars.yml 
+    - ./vars.yml 
   tasks: 
         - name: import satellite credentials 
           include_vars:

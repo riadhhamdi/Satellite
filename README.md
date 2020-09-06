@@ -144,4 +144,71 @@ To run roles on a given node:
 
 [Show as video](https://youtu.be/n3NqjSh84P8 "Riadh's Videos")
 
+## Scanning Debian Hosts with foreman_scap (OpenScap) And uploading reports to Satellite 
 
+
+**1. Installing Foreman Scap client **
+
+
+ A first step to let the Debian/ubuntu server upload scap reports to Red Hat satellite is to install the **foreman_scap_client** ruby gem
+
+**NOTE** In the following we are using a script to install everything required for foreman_scap_client 
+
+```
+[root@debian-demo]# wget https://raw.githubusercontent.com/riadhhamdi/Satellite/debian/files/deb-oscap-config.sh
+[root@debian-demo]# chmod 700 deb-oscap-config.sh
+[root@debian-demo]# ./deb-oscap-config.sh
+```
+
+The script will prompt for the following information: 
+  - The Satellite FQDN
+  - The Satellite IP 
+  - The Satellite Scap Policy on the Satellite Server  
+  - The Satellite athorized user to list openscap policies 
+  - The Satellite athorized user  password 
+  - 
+
+For more explanation about this : [Check the video](https://youtu.be/UfvDp8o28As "Riadh's Videos")
+
+
+**2. Getting the host certificates to ensure **
+
+The Certificates are an essential part to authenticate to Foreman-Proxy. As part of it's job foreman_scap_client needs to upload scap reports so this means that it should be authenticated. 
+
+*This is the most complicated part when configuring foreman_scap_client* 
+
+
+:information_source: 
+```
+To Simplify the Process we are using the command to generate a cert for a new Satellite Capsule 
+```
+
+
+To generate certificates to the host use the following procedure 
+
+**NOTE** in this example my host fqdn is **debian-demo.europe-west1-b.c.custom-plating-288414.internal**
+```
+[root@satellite]# mkdir /tmp/ssl-scap
+[root@satellite]# capsule-certs-generate --foreman-proxy-fqdn  debian-demo.europe-west1-b.c.custom-plating-288414.internal  --certs-tar /tmp/ssl-scap/demo.tar
+[root@satellite]# cd /tmp/ssl-scap ; tar xvf demo.tar 
+[root@satellite]# cp ssl-build/*/*foreman-proxy-client* /tmp/ssl-scap/
+[root@satellite]# rpm2cpio *.rpm  | cpio -idmv
+[root@satellite]# cp ./etc/pki/katello-certs-tools/certs/*.crt /tmp/ssl-scap/host.crt
+[root@satellite]# cp ./etc/pki/katello-certs-tools/private/*.key  /tmp/ssl-scap/host.key
+[root@satellite]# scp /tmp/ssl-scap/host.crt debian-demo.europe-west1-b.c.custom-plating-288414.internal:/etc/foreman_scap_client/certs/
+[root@satellite]# scp /tmp/ssl-scap/host.key debian-demo.europe-west1-b.c.custom-plating-288414.internal:/etc/foreman_scap_client/certs/
+
+```
+
+
+**2. Running the foreman Scap client and getting the report **
+
+
+On the client system run the following command 
+
+```
+[root@debian-demo]# foreman_scap_client <policy_id>
+(Example) [root@debian-demo]# foreman_scap_client 1
+```
+
+To check the report goto **Hosts** > **Reports** and check the latest report 

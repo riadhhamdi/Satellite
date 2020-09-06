@@ -208,6 +208,9 @@ On the client Side get the root CA for Katello
 [root@debian-demo]# wget http://<satellite_fqdn>/pub/katello-server-ca.crt -O /etc/foreman_scap_client/certs/ca.crt
 ```
 
+For a video demo check here: [Check the video](https://youtu.be/AY3WQaHfvUQ "Riadh's Videos")
+ 
+
 ##### 3. Running the foreman Scap client and getting the report 
 
 
@@ -219,3 +222,6 @@ On the client system run the following command
 ```
 
 To check the report goto **Hosts** > **Reports** and check the latest report 
+
+
+See the result here: [Check the video](https://youtu.be/AY3WQaHfvUQ "Riadh's Videos")

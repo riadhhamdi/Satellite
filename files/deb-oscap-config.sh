@@ -44,104 +44,88 @@ cat > scap_install.yml << EOF
   vars_files:
     - ./vars.yml 
   tasks: 
-        - name: import satellite credentials 
-          include_vars:
-          file: satellite.yml 
+    
+    - name: Get Policy parameters
+      uri:
+        url: https://{{satellite_server}}/api/v2/compliance/policies?full=true
+        method: GET
+        user: "{{satellite_username}}"
+        password:  "{{satellite_password}}"
+        force_basic_auth: yes
+        body_format: json
+        validate_certs: false 
+      register: policies
+    
+    - name: showing the list of policies and related configuration 
+      debug:
+        var: policies 
+    
+    - name: Build policy {{ policy_name }} parameters
+      set_fact:
+        policy: "{{ item }}"
+      with_items: "{{policies.json.results}}"
+      when: item.name == policy_name
+    
+    - name: Get the policy content 
+      debug:
+        var: policy
+    
+    - name: Fail if no policy found with required name
+      fail:
+      when: policy is not defined
+    
+    - name: Get scap content information
+      uri:
+        url: https://{{satellite_server}}/api/v2/compliance/scap_contents/{{policy.scap_content_id}}
+        method: GET
+        user: "{{satellite_username}}"
+        password: "{{satellite_password}}"
+        force_basic_auth: yes
+        body_format: json
+        validate_certs: false 
+      register: scapcontents
+    
+    - name: Build Scap content parameters
+      set_fact:
+        scap_content: "{{ item.profile_id }}"
+      with_items: "{{ scapcontents.json.scap_content_profiles }}"
+      when: item.id == policy.scap_content_profile_id
+    
+    - name: Get the tailoring file location
+      uri:
+        url: https://{{satellite_server}}/api/v2/compliance/tailoring_files/{{policy.tailoring_file_id}}
+        method: GET
+        user: "{{satellite_username}}"
+        password: "{{satellite_password}}"
+        force_basic_auth: yes
+        body_format: json
+        validate_certs: false 
+      register: tailoring_file
+    
+    - name: Apply openscap client configuration template
+      template:
+        src: ./openscap_client_config.yaml.j2
+        dest: /etc/foreman_scap_client/config.yaml
+        mode: 0644
+        owner: root
+        group: root
+    
+    - name: Configure execution crontab
+      cron:
+        name: "Openscap Execution"
+        cron_file: 'foreman_openscap_client'
+        job: '/usr/bin/foreman_scap_client {{policy.id}} > /dev/null'
+        weekday: "{{crontab_weekdays}}"
+        hour: "{{crontab_hour}}"
+        minute: "{{crontab_minute}}"
+        user: root
+    - name: Configure file for certs 
+      file: 
+        path: /etc/foreman_scap_client/certs/
+        state: directory
 
-        - name: Set the policy name 
-          set_fact:
-            policy_name: "{{scappolicy.el6}}"
-          when: ansible_distribution_major_version == "6"
-
-        - name: Set the policy name 
-          set_fact:
-            policy_name: "{{scappolicy.el7}}"
-          when: ansible_distribution_major_version == "7"
-
-        - name: Set the policy name 
-          set_fact:
-            policy_name: "{{scappolicy.el8}}"
-          when: ansible_distribution_major_version == "8"
-
-        - name: Get Policy parameters
-          uri:
-            url: https://{{satellite_server}}/api/v2/compliance/policies?full=true
-            method: GET
-            user: "{{satellite_username}}"
-            password:  "{{satellite_password}}"
-            force_basic_auth: yes
-            body_format: json
-            validate_certs: false 
-          register: policies
-
-        - name: showing the list of policies and related configuration 
-          debug:
-            var: policies 
-
-        - name: Build policy {{ policy_name }} parameters
-          set_fact:
-            policy: "{{ item }}"
-          with_items: "{{policies.json.results}}"
-          when: item.name == policy_name
-
-        - name: Get the policy content 
-          debug:
-            var: policy
-
-        - name: Fail if no policy found with required name
-          fail:
-          when: policy is not defined
-
-        - name: Get scap content information
-          uri:
-            url: https://{{satellite_server}}/api/v2/compliance/scap_contents/{{policy.scap_content_id}}
-            method: GET
-            user: "{{satellite_username}}"
-            password: "{{satellite_password}}"
-            force_basic_auth: yes
-            body_format: json
-            validate_certs: false 
-          register: scapcontents
-
-        - name: Build Scap content parameters
-          set_fact:
-            scap_content: "{{ item.profile_id }}"
-          with_items: "{{ scapcontents.json.scap_content_profiles }}"
-          when: item.id == policy.scap_content_profile_id
-
-        - name: Get the tailoring file location
-          uri:
-            url: https://{{satellite_server}}/api/v2/compliance/tailoring_files/{{policy.tailoring_file_id}}
-            method: GET
-            user: "{{satellite_username}}"
-            password: "{{satellite_password}}"
-            force_basic_auth: yes
-            body_format: json
-            validate_certs: false 
-          register: tailoring_file
-        
-        - name: Apply openscap client configuration template
-          template:
-            src: ./openscap_client_config.yaml.j2
-            dest: /etc/foreman_scap_client/config.yaml
-            mode: 0644
-            owner: root
-            group: root
-
-        - name: Configure execution crontab
-          cron:
-            name: "Openscap Execution"
-            cron_file: 'foreman_openscap_client'
-            job: '/usr/bin/foreman_scap_client {{policy.id}} > /dev/null'
-            weekday: "{{crontab_weekdays}}"
-            hour: "{{crontab_hour}}"
-            minute: "{{crontab_minute}}"
-            user: root
-        - name: Configure file for certs 
-          file: 
-            path: /etc/foreman_scap_client/certs/
-            state: directory
 EOF
+
 
 printf 'Provide Satellite FQDN : '
 read -r sat_fqdn

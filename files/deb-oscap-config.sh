@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-apt install -y  ansible  git gem rubygems build-essential
+apt install -y  ansible  git gem rubygems build-essential libopenscap8
 gem install foreman_scap_client
 
 

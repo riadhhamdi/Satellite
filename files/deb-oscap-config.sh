@@ -127,16 +127,16 @@ cat > scap_install.yml << EOF
 EOF
 
 
-printf 'Provide Satellite FQDN : '
-read -r sat_fqdn
-printf 'Provide Satellite IP : '
-read -r sat_ip
-printf 'Provide OpenScap Policy name : '
-read -r scap_policy
-printf 'Provide a valid Satellite username : '
-read -r sat_user
-printf 'Provide a valid Satellite password : '
-read -r sat_pass
+echo -n 'Provide Satellite FQDN : '
+read  sat_fqdn
+echo -n 'Provide Satellite IP : '
+read  sat_ip
+echo -n 'Provide OpenScap Policy name : '
+read  scap_policy
+echo -n 'Provide a valid Satellite username : '
+read  sat_user
+echo -n 'Provide a valid Satellite password : '
+read  sat_pass
 
 
 echo "satellite_username: $sat_user" >> vars.yml 

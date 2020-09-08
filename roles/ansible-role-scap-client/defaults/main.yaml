@@ -1,6 +1,6 @@
-satellite_server: 'spoutnik.local.amue.fr'
+satellite_server: 'satellite.example.com'
 satellite_username: admin
-satellite_password: 'cestcool'
+satellite_password: 'xxxxxxx'
 capsule_port: '9090'
 policy_name: 'changeme'
 crontab_hour: 2

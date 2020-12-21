@@ -224,4 +224,4 @@ On the client system run the following command
 To check the report goto **Hosts** > **Reports** and check the latest report 
 
 
-See the result here: [Check the video](https://youtu.be/uOa9ekqWRzw "Riadh's Videos")
+See the result here: [Check the video](https://youtu.be/WQPMxLqz5yE "Riadh's Videos")
